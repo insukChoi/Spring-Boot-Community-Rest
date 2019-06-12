@@ -6,13 +6,7 @@ import com.community.rest.domain.enums.SocialType;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -29,7 +23,7 @@ public class User implements Serializable {
 
     @Id
     @Column
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
     @Column
@@ -42,7 +36,7 @@ public class User implements Serializable {
     private String email;
 
     @Column
-    private String pincipal;
+    private String principal;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -55,11 +49,11 @@ public class User implements Serializable {
     private LocalDateTime updatedDate;
 
     @Builder
-    public User(String name, String password, String email, String pincipal, SocialType socialType, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public User(String name, String password, String email, String principal, SocialType socialType, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.name = name;
         this.password = password;
         this.email = email;
-        this.pincipal = pincipal;
+        this.principal = principal;
         this.socialType = socialType;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;

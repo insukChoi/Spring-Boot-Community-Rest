@@ -32,11 +32,11 @@ public class BoardEventTest {
 
     private Board createBoard() {
         Board board = Board.builder().title("저장 이벤트 테스트").build();
-        return testRestTemplate.postForObject("http://127.0.0.1:8081/api/boards", board, Board.class);
+        return testRestTemplate.postForObject("http://localhost:9092/api/boards", board, Board.class);
     }
 
     private Board updateBoard(Board createdBoard) {
-        String updateUri = "http://127.0.0.1:8081/api/boards/1";
+        String updateUri = "http://localhost:9092/api/boards/1";
         testRestTemplate.put(updateUri, createdBoard);
         return testRestTemplate.getForObject(updateUri, Board.class);
     }

@@ -33,7 +33,7 @@ public class BoardRestController {
         this.boardRepository = boardRepository;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_ATOM_XML_VALUE})
     public ResponseEntity<?> getBoards(@PageableDefault Pageable pageable) {
         Page<Board> boards = boardRepository.findAll(pageable);
         PageMetadata pageMetadata = new PageMetadata(pageable.getPageSize(), boards.getNumber(), boards.getTotalElements());
